@@ -1,12 +1,14 @@
 import React from 'react';
-import { Router, Route, Switch, Link, NavLink } from 'react-router-dom';
-import createHistory from 'history/createBrowserHistory';
-import DashboardPage from '../components/DashboardPage';
-import HelpPage from '../components/HelpPage';
+import { Router, Route, Switch} from 'react-router-dom';
+import LandingPage from '../components/LandingPage';
+import ProjectsPage from '../components/ProjectsPage';
+import WorkPage from '../components/WorkPage';
+import ContactMe from '../components/ContactMe';
+import Header from '../components/Header';
+import Footer from '../components/Footer';
+//import ResumeClicker from '../components/ResumeClicker';
 import NotFoundPage from '../components/NotFoundPage';
-import LoginPage from '../components/LoginPage';
-import PrivateRoute from './PrivateRoute';
-import PublicRoute from './PublicRoute';
+import createHistory from 'history/createBrowserHistory';
 
 export const history = createHistory();
 
@@ -14,13 +16,18 @@ export const history = createHistory();
 // but we pass in a customer history to it.
 const AppRouter = () => (
   <Router history={history}>
-    <div>
-      <Switch>
-        <PublicRoute path="/" component={LoginPage} exact={true} />
-        <PrivateRoute path="/dashboard" component={DashboardPage} />
-        <Route path="/help" component={HelpPage} />
-        <Route component={NotFoundPage} />
-      </Switch>
+    <div className="container">
+      <Header />
+        <div className="content-container">
+          <Switch>
+              <Route path="/" component={LandingPage} exact={true} />
+              <Route path="/projects" component={ProjectsPage} />
+              <Route path="/work" component={WorkPage} />
+              <Route path="/contact" component={ContactMe} />
+              <Route component={NotFoundPage} />
+          </Switch>
+          <Footer />
+        </div>
     </div>
   </Router>
 );
